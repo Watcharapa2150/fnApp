@@ -1,13 +1,52 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { SafeAreaView } from "react-native-web";
+import {
+  useFonts,
+  FredokaOne_400Regular,
+} from "@expo-google-fonts/fredoka-one";
 
-
-const FlexDirectionBasics = () => {
-  const [flexDirection, setflexDirection] = useState('column');}
 
 const Home = () => {
+  let [fontsLoaded] = useFonts({
+    FredokaOne_400Regular,
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <View style={{ height: '25%', backgroundColor: "steelblue" }} />
+    <SafeAreaView>
+      <View
+        style={[
+          styles.box1,
+          styles.label,
+          {
+            backgroundColor: "#D8E9A8",
+            justifyContent: "center",
+          },
+        ]}
+      >
+        <Text
+          style={{
+            fontSize: "2.5em",
+            fontFamily: "FredokaOne_400Regular",
+            color: "#1E5128",
+          }}
+        >
+          overview
+        </Text>
+      </View>
+      <View
+        style={[
+          styles.box2,
+          {
+            backgroundColor: "skyblue",
+            
+          },
+        ]}
+      />
+      <View style={[styles.box, { backgroundColor: "steelblue" }]} />
+    </SafeAreaView>
   );
 };
 
@@ -19,9 +58,14 @@ const styles = StyleSheet.create({
     marginTop: 8,
     backgroundColor: "aliceblue",
   },
-  box: {
-    width: 50,
-    height: 50,
+  box1: {
+    borderBottomLeftRadius: 25,
+    borderBottomRightRadius: 25,
+    height: 150,
+  },
+  box2: {
+    borderRadius:50,
+    height: 1000,
   },
   row: {
     flexDirection: "row",
@@ -53,6 +97,5 @@ const styles = StyleSheet.create({
   label: {
     textAlign: "center",
     marginBottom: 10,
-    fontSize: 24,
   },
 });
