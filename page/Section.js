@@ -1,8 +1,18 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-web";
+import {
+  useFonts,
+  FredokaOne_400Regular,
+} from "@expo-google-fonts/fredoka-one";
 
 const Section = () => {
+  let [fontsLoaded] = useFonts({
+    FredokaOne_400Regular,
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <SafeAreaView>
       <View
@@ -17,6 +27,9 @@ const Section = () => {
         ]}
       >
         <TextInput placeholder="55" style={styles.input}/>
+        <TouchableOpacity
+          style={[styles.roundButton,{position: "absolute",top: 400,right:65}]}>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -31,9 +44,11 @@ const styles = StyleSheet.create({
     backgroundColor: "aliceblue",
   },
   box1: {
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-    height: 150,
+    position: "absolute",
+    borderBottomLeftRadius: 150,
+    borderBottomRightRadius: 150,
+    height: 650,
+    width: "100vw",
   },
   box2: {
     borderRadius: 50,
@@ -42,6 +57,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
+  },
+  roundButton:{
+    width: 300,
+    height: 100,
+    borderRadius: 100,
+    backgroundColor: 'orange',
   },
   button: {
     paddingHorizontal: 8,
