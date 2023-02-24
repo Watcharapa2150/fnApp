@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-web";
 import {
@@ -20,15 +26,54 @@ const Section = () => {
           styles.box1,
           styles.label,
           {
-            backgroundColor: "#D8E9A8",
+            backgroundColor: "#DDB529",
             justifyContent: "center",
-            alignItems:'center'
+            alignItems: "center",
           },
         ]}
       >
-        <TextInput placeholder="55" style={styles.input}/>
+        <TextInput
+          placeholder="Bath"
+          style={[
+            styles.input,
+            {
+              fontFamily: "FredokaOne_400Regular",
+              fontSize: 30,
+              textAlign: "center",
+              color: "gray",
+              backgroundColor: "#FAF6E7",
+            },
+          ]}
+        />
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 400,right:65}]}>
+          style={[styles.roundButton, { position: "absolute", top: 400 }]}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 30,
+              padding: 15,
+              fontFamily: "FredokaOne_400Regular",
+              color: "#FFF7DA",
+            }}
+          >
+            Income
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.roundButton2, { position: "absolute", top: 500 }]}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 30,
+              padding: 15,
+              fontFamily: "FredokaOne_400Regular",
+              color: "#FFF7DA",
+            }}
+          >
+            Expenses
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -58,11 +103,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
   },
-  roundButton:{
-    width: 300,
-    height: 100,
+  roundButton: {
+    width: 200,
+    height: 70,
     borderRadius: 100,
-    backgroundColor: 'orange',
+    backgroundColor: "#40D54E",
+    justifyContent: "center",
+  },
+  roundButton2: {
+    width: 200,
+    height: 70,
+    borderRadius: 100,
+    backgroundColor: "#F64949",
+    justifyContent: "center",
   },
   button: {
     paddingHorizontal: 8,
@@ -92,12 +145,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   input: {
-    width: 200,
-    height: 40,
-    borderRadius:15,
+    width: 300,
+    height: 100,
+    borderRadius: 55,
     padding: 10,
     marginTop: 20,
     marginBottom: 10,
-    backgroundColor: "white"
-  }
+    backgroundColor: "white",
+  },
 });

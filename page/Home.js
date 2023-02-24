@@ -20,7 +20,7 @@ const Home = () => {
           styles.box1,
           styles.label,
           {
-            backgroundColor: "#D8E9A8",
+            backgroundColor: "#DDB529",
             justifyContent: "center",
           },
         ]}
@@ -29,7 +29,7 @@ const Home = () => {
           style={{
             fontSize: "4em",
             fontFamily: "FredokaOne_400Regular",
-            color: "#1E5128",
+            color: "white",
           }}
         >
           overview
@@ -39,17 +39,18 @@ const Home = () => {
         style={[
           styles.box2,
           {
-            backgroundColor: "skyblue",
+            backgroundColor: "#FFF7DA",
           },
-        ]}>
-          <Text
+        ]}
+      >
+        <Text
           style={{
             position: "absolute",
             fontSize: "2em",
             fontFamily: "FredokaOne_400Regular",
-            color: "#1E5128",
-            top: 20,
-            left:150
+            color: "#AA8145",
+            top: 50,
+            left: 150,
           }}
         >
           Income
@@ -59,9 +60,9 @@ const Home = () => {
             position: "absolute",
             fontSize: "2em",
             fontFamily: "FredokaOne_400Regular",
-            color: "#1E5128",
-            top: 200,
-            left:135
+            color: "#AA8145",
+            top: 210,
+            left: 135,
           }}
         >
           Expenses
@@ -71,23 +72,53 @@ const Home = () => {
             position: "absolute",
             fontSize: "2em",
             fontFamily: "FredokaOne_400Regular",
-            color: "#1E5128",
+            color: "#AA8145",
             top: 380,
-            left:155
+            left: 155,
           }}
         >
           Total
         </Text>
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 550,left:65}]}>
+          style={[
+            styles.roundButton,
+            { position: "absolute", top: 550, left: 65 },
+          ]}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 40,
+              padding: 25,
+              fontFamily: "FredokaOne_400Regular",
+              color: "white",
+            }}
+          >
+            i
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 550,right:65}]}>
+          style={[
+            styles.roundButton,
+            { position: "absolute", top: 550, right: 65 },
+          ]}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 50,
+              padding: 15,
+              fontFamily: "FredokaOne_400Regular",
+              color: "white",
+            }}
+          >
+            +
+          </Text>
         </TouchableOpacity>
-        </View>
-      <View style={[styles.box3, { backgroundColor: "steelblue" }]} />
-      <View style={[styles.box4, { backgroundColor: "steelblue" }]} />
-      <View style={[styles.box5, { backgroundColor: "steelblue" }]} />
+      </View>
+      <View style={[styles.box3, { backgroundColor: "#FFE382" }]} />
+      <View style={[styles.box4, { backgroundColor: "#FFE382" }]} />
+      <View style={[styles.box5, { backgroundColor: "#FFE382" }]} />
     </SafeAreaView>
   );
 };
@@ -113,23 +144,23 @@ const styles = StyleSheet.create({
     borderRadius: 150,
     height: 625,
     width: "100vw",
-    top: 170
+    top: 190,
   },
   box3: {
     position: "absolute",
     borderRadius: 110,
     height: 80,
     width: "80vw",
-    top: 260,
-    left:40
+    top: 300,
+    left: 40,
   },
   box4: {
     position: "absolute",
     borderRadius: 110,
     height: 80,
     width: "80vw",
-    top: 440,
-    left:40
+    top: 460,
+    left: 40,
   },
   box5: {
     position: "absolute",
@@ -137,29 +168,19 @@ const styles = StyleSheet.create({
     height: 80,
     width: "80vw",
     top: 620,
-    left:40
+    left: 40,
   },
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
   },
-  roundButton:{
+  roundButton: {
     width: 100,
     height: 100,
     borderRadius: 100,
-    backgroundColor: 'orange',
+    backgroundColor: "#EF9E00",
   },
-  button: {
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-    borderRadius: 4,
-    backgroundColor: "oldlace",
-    alignSelf: "flex-start",
-    marginHorizontal: "1%",
-    marginBottom: 6,
-    minWidth: "48%",
-    textAlign: "center",
-  },
+
   selected: {
     backgroundColor: "coral",
     borderWidth: 0,

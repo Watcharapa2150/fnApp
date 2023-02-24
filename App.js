@@ -13,9 +13,9 @@ export default function App() {
   return (
     <View style={{ backgroundColor: "#191A19" }}>
        {/* <Home />  */}
-      <Section/>
+      {/* <Section/> */}
       {/* <Note/> */}
-      {/* <Result/> */}
+      <Result/>
     </View>
   );
 }
