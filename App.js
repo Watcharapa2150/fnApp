@@ -1,23 +1,34 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Home from "./page/Home";
 import Note from './page/Note';
 import Result from './page/Result';
 import Section from "./page/Section"
+import Income from "./page/Income";
+import Expensens from "./page/Expensens";
 import {
   useFonts,
   FredokaOne_400Regular,
 } from "@expo-google-fonts/fredoka-one";
 
+
+
+const Stack = createStackNavigator();
 export default function App() {
   return (
-    <View style={{ backgroundColor: "#191A19" }}>
-       {/* <Home />  */}
-      {/* <Section/> */}
-      {/* <Note/> */}
-      <Result/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Section" component={Section} />
+        <Stack.Screen name="Result" component={Result} />
+        <Stack.Screen name="Income" component={Income} />
+        <Stack.Screen name="Expensens" component={Expensens} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({});
+

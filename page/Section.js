@@ -11,7 +11,7 @@ import {
   useFonts,
   FredokaOne_400Regular,
 } from "@expo-google-fonts/fredoka-one";
-
+import { useNavigation } from '@react-navigation/native';
 const Section = () => {
   let [fontsLoaded] = useFonts({
     FredokaOne_400Regular,
@@ -47,6 +47,7 @@ const Section = () => {
         />
         <TouchableOpacity
           style={[styles.roundButton, { position: "absolute", top: 400 }]}
+          onPress={() => navigation.navigate('Income')}
         >
           <Text
             style={{
@@ -62,6 +63,7 @@ const Section = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.roundButton2, { position: "absolute", top: 500 }]}
+          onPress={() => navigation.navigate('Income')}
         >
           <Text
             style={{

@@ -1,12 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-web";
 import {
   useFonts,
   FredokaOne_400Regular,
 } from "@expo-google-fonts/fredoka-one";
+import { useNavigation } from '@react-navigation/native';
+import Section from "./Section"
 
 const Home = () => {
+  const [selected, setSelected] = useState("income");
+  const navigation = useNavigation();
   let [fontsLoaded] = useFonts({
     FredokaOne_400Regular,
   });
@@ -16,14 +20,7 @@ const Home = () => {
   return (
     <SafeAreaView>
       <View
-        style={[
-          styles.box1,
-          styles.label,
-          {
-            backgroundColor: "#DDB529",
-            justifyContent: "center",
-          },
-        ]}
+        style={[styles.box1, styles.label, { backgroundColor: "#DDB529", justifyContent: "center", },]}
       >
         <Text
           style={{
@@ -36,12 +33,7 @@ const Home = () => {
         </Text>
       </View>
       <View
-        style={[
-          styles.box2,
-          {
-            backgroundColor: "#FFF7DA",
-          },
-        ]}
+        style={[styles.box2, { backgroundColor: "#FFF7DA", },]}
       >
         <Text
           style={{
@@ -80,10 +72,8 @@ const Home = () => {
           Total
         </Text>
         <TouchableOpacity
-          style={[
-            styles.roundButton,
-            { position: "absolute", top: 550, left: 65 },
-          ]}
+          style={[styles.roundButton, { position: "absolute", top: 550, left: 65 },]}
+          onPress={() => navigation.navigate('Result')}
         >
           <Text
             style={{
@@ -98,10 +88,8 @@ const Home = () => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[
-            styles.roundButton,
-            { position: "absolute", top: 550, right: 65 },
-          ]}
+          style={[styles.roundButton, { position: "absolute", top: 550, right: 65 },]}
+          onPress={() => navigation.navigate('Section')}
         >
           <Text
             style={{
