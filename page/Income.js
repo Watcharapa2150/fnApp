@@ -1,78 +1,88 @@
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, SafeAreaView } from "react-native";
-import React,{useState, useEffect} from "react";
-import {
-    useFonts,
-    FredokaOne_400Regular,
-  } from "@expo-google-fonts/fredoka-one";
-
+import { useRoute } from '@react-navigation/native';
+import { useFonts, FredokaOne_400Regular } from "@expo-google-fonts/fredoka-one";
 
 const Income = () => {
-    const [currentDate, SetCurrentDate] = useState('');
+  const route = useRoute();
+  const [currentDate, setCurrentDate] = useState('');
+  var [value, setValue] = useState(route.params.bathValue);
+  var values =  sessionStorage.getItem("values", values);
 
-    useEffect(() => {
-        var date = new Date().getDate();
-        var month = new Date().getMonth() +1;
-        var year = new Date().getFullYear();
-        SetCurrentDate(
-            date + '/' + month + '/' + year
-        );
-    }, [])
+  useEffect(() => {
+    const date = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    setCurrentDate(
+      date + '/' + month + '/' + year
+    );
+  }, [])
 
-    let [fontsLoaded] = useFonts({
-        FredokaOne_400Regular,
-      });
-      if (!fontsLoaded) {
-        return null;
-      }
+  let [fontsLoaded] = useFonts({
+    FredokaOne_400Regular,
+  });
+  
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  const handleValueChange = (text) => {
+    setValue(text);
+  };
+
   return (
     <SafeAreaView>
-        <View
+      <View
         style={[
           styles.box1,
           styles.label,
           {
             backgroundColor: "#FEC13E",
             justifyContent: "center",
-            alignItems:'center'
+            alignItems: 'center'
           },
         ]}
       >
-        <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",position: "absolute",top:45}}>
-            Date: {currentDate}
+        <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", position: "absolute", top: 45 }}>
+          Date: {currentDate}
         </Text>
         <TouchableOpacity
-          style={[styles.showcase,{position: "absolute",top: 100,alignContent:'center',backgroundColor: '#40D54E'}]}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:10}}>
-                Income
-            </Text>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:25}}>
-                + 0000 $
-            </Text>
+          style={[styles.showcase, { position: "absolute", top: 100, alignContent: 'center', backgroundColor: '#40D54E' }]}>
+          <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 10 }}>
+            Income
+          </Text>
+          
+          <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 25 }}>
+            + { values } $
+          </Text>
         </TouchableOpacity>
-        <View style={{paddingTop:30}}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingRight:228}}>
-                Note
-            </Text>
-            <TextInput style={[styles.input,{fontSize:25}]}/>
+        <View style={{ paddingTop: 30 }}>
+          <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingRight: 228 }}>
+            Note
+          </Text>
+          <TextInput style={[styles.input, { fontSize: 25 }]} />
         </View>
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 450,backgroundColor: '#40D54E'}]}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:12}}>
-                Submit
-            </Text>
+          style={[styles.roundButton, { position: "absolute", top: 450, backgroundColor: '#40D54E' }]}
+          onPress={() => navigation.navigate('Result')}
+        >
+          <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 12 }}>
+            Submit
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 550,backgroundColor: 'red'}]}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:12}}>
-                Cancel
-            </Text>
+          style={[styles.roundButton, { position: "absolute", top: 550, backgroundColor: 'red' }]}
+        >
+          <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 12 }}>
+            Cancel
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   )
 }
 
-export default Income
+export default Income;
 
 const styles = StyleSheet.create({
     box1: {

@@ -1,3 +1,4 @@
+import { useRoute } from '@react-navigation/native';
 import {
   StyleSheet,
   Text,
@@ -5,49 +6,45 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-web";
 import {
   useFonts,
   FredokaOne_400Regular,
 } from "@expo-google-fonts/fredoka-one";
 import { useNavigation } from '@react-navigation/native';
+
 const Section = () => {
   let [fontsLoaded] = useFonts({
     FredokaOne_400Regular,
   });
+  const navigation = useNavigation();
+  var [bathValue, setBathValue] = useState('');
+  var values = 0;
   if (!fontsLoaded) {
     return null;
   }
+
+  const handleNavigateToIncome = () => {
+    
+     
+    navigation.navigate('Income', { bath: bathValue });
+  };
+
   return (
     <SafeAreaView>
       <View
-        style={[
-          styles.box1,
-          styles.label,
-          {
-            backgroundColor: "#DDB529",
-            justifyContent: "center",
-            alignItems: "center",
-          },
-        ]}
+        style={[styles.box1, styles.label, { backgroundColor: "#DDB529", justifyContent: "center", alignItems: "center", },]}
       >
         <TextInput
           placeholder="Bath"
-          style={[
-            styles.input,
-            {
-              fontFamily: "FredokaOne_400Regular",
-              fontSize: 30,
-              textAlign: "center",
-              color: "gray",
-              backgroundColor: "#FAF6E7",
-            },
-          ]}
+          style={[styles.input, { fontFamily: "FredokaOne_400Regular", fontSize: 30, textAlign: "center", color: "gray", backgroundColor: "#FAF6E7", },]}
+          onChangeText={(text) => {setBathValue(text);sessionStorage.setItem("values",text );}}
         />
         <TouchableOpacity
           style={[styles.roundButton, { position: "absolute", top: 400 }]}
-          onPress={() => navigation.navigate('Income')}
+
+          onPress={handleNavigateToIncome}
         >
           <Text
             style={{
@@ -63,7 +60,7 @@ const Section = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.roundButton2, { position: "absolute", top: 500 }]}
-          onPress={() => navigation.navigate('Income')}
+          onPress={() => navigation.navigate('Expenses')}
         >
           <Text
             style={{

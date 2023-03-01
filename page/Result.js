@@ -1,43 +1,39 @@
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-  
 } from "react-native";
-import React,{useState, useEffect} from "react";
-import {
-  useFonts,
-  FredokaOne_400Regular,
-} from "@expo-google-fonts/fredoka-one";
+import { useFonts, FredokaOne_400Regular } from "@expo-google-fonts/fredoka-one";
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-
 const Result = () => {
+  const [currentDate, setCurrentDate] = useState('');
 
-  const [currentDate, SetCurrentDate] = useState('');
+  useEffect(() => {
+    const date = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    setCurrentDate(date + '/' + month + '/' + year);
+  }, []);
 
-    useEffect(() => {
-        var date = new Date().getDate();
-        var month = new Date().getMonth() +1;
-        var year = new Date().getFullYear();
-        SetCurrentDate(
-            date + '/' + month + '/' + year
-        );
-    }, [])
-
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     FredokaOne_400Regular,
   });
+
+  const [buttonOpacity, setButtonOpacity] = useState(0.5);
+
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <Text style={[styles.fontHeader, { margin: 35, textAlign: "center" }]}>
-        Date : {currentDate}
+        Date: {currentDate}
       </Text>
 
       <View
@@ -61,38 +57,46 @@ const Result = () => {
           },
         ]}
       >
-        Detail
+        <Text style={styles.font}>Detail</Text>
       </View>
 
       <TouchableOpacity
         style={[
           styles.roundButton,
-          { position: "absolute", top: 700, right: 55 },
+          { position: "absolute", top: 700, right: 55, opacity: buttonOpacity },
         ]}
+        onPress={() => setButtonOpacity(1)}
+        activeOpacity={0.7}
       >
-        <View style={{alignItems:'center',top:18}}>
-        <AntDesign name="caretright"size={32} color="#FFF7DA"  /></View>
-        
+        <View style={{ alignItems: 'center', top: 18 }}>
+          <AntDesign name="caretright" size={32} color="#FFF7DA" />
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[
           styles.roundButton,
-          { position: "absolute", top: 700, left: 55 },
+          { position: "absolute", top: 700, left: 55, opacity: buttonOpacity },
         ]}
+        onPress={() => setButtonOpacity(1)}
+        activeOpacity={0.7}
       >
-        <View style={{alignItems:'center',top:18}}>
-        <AntDesign name="caretleft"size={32} color="#FFF7DA"  /></View>
-        
+        <View style={{ alignItems: 'center', top: 18 }}>
+          <AntDesign name="caretleft" size={32} color="#FFF7DA" />
+        </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={[
           styles.roundButton2,
-          { position: "absolute", top: 700, left: 170 },
+          { position: "absolute", top: 700, left: 170, opacity: buttonOpacity },
         ]}
+        onPress={() => setButtonOpacity(1)}
+        activeOpacity={0.7}
       >
-        <View style={{alignItems:'center',top:18}}>
-        <FontAwesome name="close" size={32} color="#FFF7DA" /></View>
-        
+        <View style={{ alignItems: 'center', top: 18 }}>
+          <FontAwesome name="close" size={32} color="#FFF7DA" />
+        </View>
       </TouchableOpacity>
     </SafeAreaView>
   );

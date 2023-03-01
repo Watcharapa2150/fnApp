@@ -12,7 +12,7 @@ import {
   useFonts,
   FredokaOne_400Regular,
 } from "@expo-google-fonts/fredoka-one";
-
+import { useRoute } from '@react-navigation/native';
 
 
 const Stack = createStackNavigator();
