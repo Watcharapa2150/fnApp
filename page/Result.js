@@ -9,17 +9,21 @@ import {
 import { useFonts, FredokaOne_400Regular } from "@expo-google-fonts/fredoka-one";
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native'; 
 
 const Result = () => {
+  const values = sessionStorage.getItem("values");
+  const notedValue = sessionStorage.getItem("noted");
+  var storedArray = JSON.parse(sessionStorage.getItem("sum"))
   const [currentDate, setCurrentDate] = useState('');
-
+  const navigation = useNavigation();
   useEffect(() => {
     const date = new Date().getDate();
     const month = new Date().getMonth() + 1;
     const year = new Date().getFullYear();
     setCurrentDate(date + '/' + month + '/' + year);
   }, []);
-
+     
   const [fontsLoaded] = useFonts({
     FredokaOne_400Regular,
   });
@@ -58,7 +62,27 @@ const Result = () => {
         ]}
       >
         <Text style={styles.font}>Detail</Text>
+
+
+  
       </View>
+      <View
+        style={[
+          styles.box2,
+          {
+            backgroundColor: "FFE380",
+            justifyContent: "center",
+            top: 160,
+          },
+        ]}
+      >
+        <Text style={styles.font}>{notedValue}    {values} </Text>
+        <Text style={styles.font}>{storedArray}</Text>
+  
+
+  
+      </View>
+  
 
       <TouchableOpacity
         style={[

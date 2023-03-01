@@ -11,6 +11,9 @@ import Section from "./Section"
 const Home = () => {
   const [selected, setSelected] = useState("income");
   const navigation = useNavigation();
+  var storedArray = JSON.parse(sessionStorage.getItem("sum"))
+  var income = JSON.parse(sessionStorage.getItem("income"))
+  var expen = JSON.parse(sessionStorage.getItem("expen"))
   let [fontsLoaded] = useFonts({
     FredokaOne_400Regular,
   });
@@ -71,6 +74,19 @@ const Home = () => {
         >
           Total
         </Text>
+        <Text
+          style={{
+            position: "absolute",
+            fontSize: "2em",
+            fontFamily: "FredokaOne_400Regular",
+            color: "#AA8145",
+            top: 450,
+            left: 155,
+          }}
+        >
+          {storedArray}
+        </Text>
+        
         <TouchableOpacity
           style={[styles.roundButton, { position: "absolute", top: 550, left: 65 },]}
           onPress={() => navigation.navigate('Result')}
@@ -104,9 +120,36 @@ const Home = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={[styles.box3, { backgroundColor: "#FFE382" }]} />
-      <View style={[styles.box4, { backgroundColor: "#FFE382" }]} />
-      <View style={[styles.box5, { backgroundColor: "#FFE382" }]} />
+      <View style={[styles.box3, { backgroundColor: "#FFE382" }]} >
+      <Text style={{
+              textAlign: "center",
+              fontSize: 50,
+              padding: 15,
+              fontFamily: "FredokaOne_400Regular",
+              color: "white",
+            }}>{expen}</Text>
+        
+      </View>
+      <View style={[styles.box4, { backgroundColor: "#FFE382" }]} >
+      <Text style={{
+              textAlign: "center",
+              fontSize: 50,
+              padding: 15,
+              fontFamily: "FredokaOne_400Regular",
+              color: "white",
+            }}>{income}</Text>
+        
+      </View>
+      <View style={[styles.box5, { backgroundColor: "#FFE382" }]} >
+      <Text style={{
+              textAlign: "center",
+              fontSize: 50,
+              padding: 15,
+              fontFamily: "FredokaOne_400Regular",
+              color: "white",
+            }}>{storedArray}</Text>
+        
+      </View>
     </SafeAreaView>
   );
 };

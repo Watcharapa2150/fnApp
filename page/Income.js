@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, SafeAreaView } from "react-native";
 import { useRoute } from '@react-navigation/native';
 import { useFonts, FredokaOne_400Regular } from "@expo-google-fonts/fredoka-one";
-
+import { useNavigation } from '@react-navigation/native';
 const Income = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const [currentDate, setCurrentDate] = useState('');
   var [value, setValue] = useState(route.params.bathValue);
@@ -60,11 +61,28 @@ const Income = () => {
           <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingRight: 228 }}>
             Note
           </Text>
-          <TextInput style={[styles.input, { fontSize: 25 }]} />
+          <TextInput style={[styles.input, { fontSize: 25 }]}
+           onChangeText={(text) => {sessionStorage.setItem("noted",text );}} />
         </View>
         <TouchableOpacity
           style={[styles.roundButton, { position: "absolute", top: 450, backgroundColor: '#40D54E' }]}
-          onPress={() => navigation.navigate('Result')}
+          onPress={() => {
+          var existingEntries = JSON.parse(sessionStorage.getItem("sum"));
+          var income = JSON.parse(sessionStorage.getItem("income"));
+
+          console.log(existingEntries);
+          if(existingEntries == null) existingEntries = [];
+          if(income == null) existingEntries = [];
+
+          values=parseInt(values);
+          console.log(existingEntries);
+          existingEntries = parseInt(existingEntries)+values;
+          income = parseInt(income)+values;
+
+          console.log(existingEntries);
+          sessionStorage.setItem("sum",JSON.stringify(existingEntries));
+          sessionStorage.setItem("income",JSON.stringify(income));
+          navigation.navigate('Result');}}
         >
           <Text style={{ fontSize: 25, fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 12 }}>
             Submit

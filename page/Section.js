@@ -60,7 +60,7 @@ const Section = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.roundButton2, { position: "absolute", top: 500 }]}
-          onPress={() => navigation.navigate('Expenses')}
+          onPress={() => navigation.navigate('Expensens')}
         >
           <Text
             style={{

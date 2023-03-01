@@ -22,9 +22,9 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Section" component={Section} />
-        <Stack.Screen name="Result" component={Result} />
         <Stack.Screen name="Income" component={Income} />
         <Stack.Screen name="Expensens" component={Expensens} />
+        <Stack.Screen name="Result" component={Result} />
       </Stack.Navigator>
     </NavigationContainer>
   );

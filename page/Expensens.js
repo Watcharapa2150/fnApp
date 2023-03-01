@@ -1,70 +1,97 @@
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, SafeAreaView } from "react-native";
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
-    useFonts,
-    FredokaOne_400Regular,
-  } from "@expo-google-fonts/fredoka-one";
+  useFonts,
+  FredokaOne_400Regular,
+} from "@expo-google-fonts/fredoka-one";
+import { useRoute } from '@react-navigation/native';
 
+import { useNavigation } from '@react-navigation/native';
 const Expensens = () => {
-    const [currentDate, SetCurrentDate] = useState('');
+  const navigation = useNavigation();
+  const route = useRoute();
 
-    useEffect(() => {
-        var date = new Date().getDate();
-        var month = new Date().getMonth() +1;
-        var year = new Date().getFullYear();
-        SetCurrentDate(
-            date + '/' + month + '/' + year
-        );
-    }, [])
+  const [currentDate, SetCurrentDate] = useState('');
+  var values = sessionStorage.getItem("values", values);
 
-    let [fontsLoaded] = useFonts({
-        FredokaOne_400Regular,
-      });
-      if (!fontsLoaded) {
-        return null;
-      }
+  useEffect(() => {
+    var date = new Date().getDate();
+    var month = new Date().getMonth() + 1;
+    var year = new Date().getFullYear();
+    SetCurrentDate(
+      date + '/' + month + '/' + year
+    );
+  }, [])
+
+  let [fontsLoaded] = useFonts({
+    FredokaOne_400Regular,
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <SafeAreaView>
-        <View
+      <View
         style={[
           styles.box1,
           styles.label,
           {
             backgroundColor: "#FEC13E",
             justifyContent: "center",
-            alignItems:'center'
+            alignItems: 'center'
           },
         ]}
       >
-        <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",position: "absolute",top:45}}>
-            Date: {currentDate}
+        <Text style={{ fontSize: "2.5em", fontFamily: "FredokaOne_400Regular", color: "white", position: "absolute", top: 45 }}>
+          Date: {currentDate}
         </Text>
         <TouchableOpacity
-          style={[styles.showcase,{position: "absolute",top: 100,alignContent:'center',backgroundColor: 'red'}]}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:10}}>
-                Expensens
-            </Text>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:25}}>
-                + 0000 $
-            </Text>
+          style={[styles.showcase, { position: "absolute", top: 100, alignContent: 'center', backgroundColor: 'red' }]}>
+          <Text style={{ fontSize: "2.5em", fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 10 }}>
+            Expensens
+          </Text>
+          <Text style={{ fontSize: "2.5em", fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 25 }}>
+            + {values} $
+          </Text>
         </TouchableOpacity>
-        <View style={{paddingTop:30}}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingRight:228}}>
-                Note
-            </Text>
-            <TextInput style={[styles.input,{fontSize:25}]}/>
+        <View style={{ paddingTop: 30 }}>
+          <Text style={{ fontSize: "2.5em", fontFamily: "FredokaOne_400Regular", color: "white", paddingRight: 228 }}>
+            Note
+          </Text>
+          <TextInput style={[styles.input, { fontSize: 25 }]} onChangeText={(text) => { sessionStorage.setItem("noted", text); }} />
         </View>
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 450,backgroundColor: '#40D54E'}]}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:12}}>
-                Submit
-            </Text>
+          style={[styles.roundButton, { position: "absolute", top: 450, backgroundColor: '#40D54E' }]}
+          onPress={() => {
+          var existingEntries = JSON.parse(sessionStorage.getItem("sum"));
+          var expens = JSON.parse(sessionStorage.getItem("expen"));
+
+          console.log(existingEntries);
+
+          if(existingEntries == null) existingEntries = [];
+          if(expens == null) existingEntries = [];
+
+          values=parseInt(values);
+          console.log(existingEntries);
+          existingEntries = parseInt(existingEntries)-values;
+          console.log(existingEntries);
+          expens = parseInt(expens)+values;
+
+          sessionStorage.setItem("sum",JSON.stringify(existingEntries));
+          sessionStorage.setItem("expen",JSON.stringify(expens));
+
+          navigation.navigate('Result');}}
+        >
+          style={[styles.roundButton, { position: "absolute", top: 450, backgroundColor: '#40D54E' }]}>
+          <Text style={{ fontSize: "2.5em", fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 12 }}>
+            Submit
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.roundButton,{position: "absolute",top: 550,backgroundColor: 'red'}]}>
-            <Text style={{fontSize: "2.5em",fontFamily: "FredokaOne_400Regular",color: "white",paddingTop:12}}>
-                Cancel
-            </Text>
+          style={[styles.roundButton, { position: "absolute", top: 550, backgroundColor: 'red' }]}>
+          <Text style={{ fontSize: "2.5em", fontFamily: "FredokaOne_400Regular", color: "white", paddingTop: 12 }}>
+            Cancel
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -74,34 +101,34 @@ const Expensens = () => {
 export default Expensens
 
 const styles = StyleSheet.create({
-    box1: {
-      position: "absolute",
-      borderBottomLeftRadius: 150,
-      borderBottomRightRadius: 150,
-      height: 650,
-      width: "100vw",
-    },
-    roundButton:{
-        width: 250,
-        height: 75,
-        borderRadius: 100
-    },
-    showcase: {
-        width: 300,
-        height: 150,
-        borderRadius: 50
-    },
-    label: {
-      textAlign: "center",
-      marginBottom: 10,
-    },
-    input: {
-      width: 300,
-      height: 80,
-      borderRadius:30,
-      padding: 10,
-      marginTop: 20,
-      marginBottom: 10,
-      backgroundColor: "white"
-    }
-  });
+  box1: {
+    position: "absolute",
+    borderBottomLeftRadius: 150,
+    borderBottomRightRadius: 150,
+    height: 650,
+    width: "100vw",
+  },
+  roundButton: {
+    width: 250,
+    height: 75,
+    borderRadius: 100
+  },
+  showcase: {
+    width: 300,
+    height: 150,
+    borderRadius: 50
+  },
+  label: {
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  input: {
+    width: 300,
+    height: 80,
+    borderRadius: 30,
+    padding: 10,
+    marginTop: 20,
+    marginBottom: 10,
+    backgroundColor: "white"
+  }
+});
